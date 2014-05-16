@@ -104,7 +104,7 @@ describe('formatter middleware', function () {
 
     request(app)
     .get('/resource')
-    .expect('Content-Type', 'application/json')
+    .expect('Content-Type', 'application/json; charset=utf-8')
     .end(done);
 
   });
