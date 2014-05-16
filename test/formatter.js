@@ -21,18 +21,20 @@ describe('JSON Schema formatter', function () {
     });
     it('should return a JSON schema string from a resource object', function () {
 
-      expect(JSON.parse((format(options)))).to.eql({
-        metas: {
-          self: {
-            href: 'http://domain/test/'
-          }
-        },
-        test: [{
-          id: 2,
-          test: 1,
-          value: 'test',
-          href: 'http://domain/test/2'
-        }]
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test/'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2'
+          }]
+        });
       });
     });
 
@@ -40,18 +42,20 @@ describe('JSON Schema formatter', function () {
 
       options.url = 'http://domain/test',
 
-      expect(JSON.parse((format(options)))).to.eql({
-        metas: {
-          self: {
-            href: 'http://domain/test'
-          }
-        },
-        test: [{
-          id: 2,
-          test: 1,
-          value: 'test',
-          href: 'http://domain/test/2'
-        }]
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2'
+          }]
+        });
       });
     });
 
@@ -59,18 +63,20 @@ describe('JSON Schema formatter', function () {
 
       options.url = 'http://domain/test/1';
 
-      expect(JSON.parse((format(options)))).to.eql({
-        metas: {
-          self: {
-            href: 'http://domain/test/1'
-          }
-        },
-        test: [{
-          id: 2,
-          test: 1,
-          value: 'test',
-          href: 'http://domain/test/2'
-        }]
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test/1'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2'
+          }]
+        });
       });
     });
 
@@ -79,17 +85,21 @@ describe('JSON Schema formatter', function () {
       options.url = 'http://domain/test/';
       options.body = 'should be array';
 
-      expect(JSON.parse((format(options))).test)
-      .to.eql(['should be array']);
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource).test)
+        .to.eql(['should be array']);
+      });
     });
 
     it('should format provided metadata', function () {
       options.metadata = { myMeta: 'data' };
-      expect(JSON.parse((format(options))).metas).to.eql({
-        self: {
-          href: 'http://domain/test/'
-        },
-        myMeta: 'data'
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource).metas).to.eql({
+          self: {
+            href: 'http://domain/test/'
+          },
+          myMeta: 'data'
+        });
       });
 
     });
