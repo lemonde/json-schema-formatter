@@ -86,6 +86,26 @@ describe('formatter middleware', function () {
     .get('/resource')
     .expect(check)
     .end(done);
+  });
+
+  it('should return a json content type', function (done) {
+    app.get('/resource', function (req, res, next) {
+      res.body = {
+        id: 1,
+        data: 'test'
+      };
+      next();
+    });
+
+    app.get('/resource', formatMiddleware({
+      domain: 'http://test.fr',
+      name: 'resource'
+    }));
+
+    request(app)
+    .get('/resource')
+    .expect('Content-Type', 'application/json')
+    .end(done);
 
   });
 });
