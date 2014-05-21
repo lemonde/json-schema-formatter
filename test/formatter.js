@@ -103,5 +103,13 @@ describe('JSON Schema formatter', function () {
       });
 
     });
+
+    it('should convert a null body to an empty array', function () {
+      options.body = null;
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource).test).to.eql([]);
+      });
+    });
   });
+
 });
