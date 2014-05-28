@@ -110,6 +110,42 @@ describe('JSON Schema formatter', function () {
         expect(JSON.parse(resource).test).to.eql([]);
       });
     });
+
+    it('should format related resources recursively', function () {
+      options.withRelated = [
+        {
+          name: 'authors',
+          url: 'http://domain/authors/'
+        }
+      ];
+      options.body = [{
+        id: 2,
+        test: 1,
+        value: 'test',
+        authors: {
+          id: 1
+        }
+      }];
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test/'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2',
+            authors: [{
+              id: 1,
+              href: 'http://domain/authors/1'
+            }]
+          }]
+        });
+      });
+    });
   });
 
 });
