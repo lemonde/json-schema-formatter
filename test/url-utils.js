@@ -18,5 +18,12 @@ describe('url utils', function () {
       expect(getResourceURL('http://test.fr/authors/?name=test', 'authors')).to.eql('http://test.fr/authors');
       expect(getResourceURL('http://test.fr/authors?name=test', 'authors')).to.eql('http://test.fr/authors');
     });
+
+    it('should work with camelcase resource name', function () {
+      expect(getResourceURL('http://test.fr/article-authors/?name=test', 'articleAuthors'))
+      .to.eql('http://test.fr/article-authors');
+      expect(getResourceURL('http://test.fr/article-authors?name=test', 'articleAuthors'))
+      .to.eql('http://test.fr/article-authors');
+    });
   });
 });

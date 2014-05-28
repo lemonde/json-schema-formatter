@@ -21,13 +21,14 @@
     "url": "https://github.com/lemonde/json-schema-formatter/issues"
   },
   "homepage": "https://github.com/lemonde/json-schema-formatter",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "underscore.string": "^2.3.3"
+  },
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.18.2",
     "supertest": "^0.12.1",
     "express": "^4.2.0"
-  },
-  "dependencies": {
-    "lodash": "^2.4.1"
   }
 }
