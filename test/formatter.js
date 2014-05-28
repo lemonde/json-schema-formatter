@@ -138,10 +138,12 @@ describe('JSON Schema formatter', function () {
             test: 1,
             value: 'test',
             href: 'http://domain/test/2',
-            authors: [{
-              id: 1,
-              href: 'http://domain/authors/1'
-            }]
+            links: {
+              authors: [{
+                id: 1,
+                href: 'http://domain/authors/1'
+              }]
+            }
           }]
         });
       });

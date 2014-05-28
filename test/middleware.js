@@ -143,10 +143,12 @@ describe('formatter middleware', function () {
           href: 'http://test.fr/resource/1',
           id: 1,
           data: 'test',
-          authors: [{
-            id: 1,
-            href: 'http://test.fr/authors/1'
-          }]
+          links: {
+            authors: [{
+              id: 1,
+              href: 'http://test.fr/authors/1'
+            }]
+          }
         }]
       });
     }
