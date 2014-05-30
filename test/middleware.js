@@ -108,4 +108,54 @@ describe('formatter middleware', function () {
     .end(done);
 
   });
+
+  it('should format resource recursively using withRelated', function (done) {
+    app.get('/resource', function (req, res, next) {
+      res.body = {
+        id: 1,
+        data: 'test',
+        authors: {
+          id: 1
+        }
+      };
+      next();
+    });
+
+    app.get('/resource', formatMiddleware({
+      domain: 'http://test.fr',
+      name: 'resource',
+      withRelated: [
+        {
+        name: 'authors',
+        url: 'http://test.fr/authors'
+        }
+      ]
+    }));
+
+    function check(res) {
+     expect(res.body).to.eql({
+        metas: {
+          self: {
+            href: 'http://test.fr/resource'
+          }
+        },
+        resource: [{
+          href: 'http://test.fr/resource/1',
+          id: 1,
+          data: 'test',
+          links: {
+            authors: [{
+              id: 1,
+              href: 'http://test.fr/authors/1'
+            }]
+          }
+        }]
+      });
+    }
+
+    request(app)
+    .get('/resource')
+    .expect(check)
+    .end(done);
+  });
 });
