@@ -176,8 +176,7 @@ describe('formatter middleware', function () {
       withRelated: [
         {
         name: 'authors',
-        url: 'http://test.fr/authors/',
-        expend: true
+        url: 'http://test.fr/authors/'
         }
       ]
     }));
@@ -186,7 +185,7 @@ describe('formatter middleware', function () {
      expect(res.body).to.eql({
         metas: {
           self: {
-            href: 'http://test.fr/resource'
+            href: 'http://test.fr/resource?expend=resource.authors'
           }
         },
         resource: [{
@@ -204,7 +203,7 @@ describe('formatter middleware', function () {
     }
 
     request(app)
-    .get('/resource')
+    .get('/resource?expend=resource.authors')
     .expect(check)
     .end(done);
   });

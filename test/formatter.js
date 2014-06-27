@@ -148,6 +148,44 @@ describe('JSON Schema formatter', function () {
         });
       });
     });
+    it('should be able to expend related resources', function () {
+      options.withRelated = [
+        {
+          name: 'authors',
+          url: 'http://domain/authors/',
+          expend: true
+        }
+      ];
+      options.body = [{
+        id: 2,
+        test: 1,
+        value: 'test',
+        authors: {
+          id: 1
+        }
+      }];
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test/'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2',
+            links: {
+              authors: [{
+                id: 1,
+                href: 'http://domain/authors/1'
+              }]
+            }
+          }]
+        });
+      });
+    });
   });
 
 });
