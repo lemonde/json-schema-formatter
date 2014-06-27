@@ -19,13 +19,34 @@ describe('JSON Schema formatter', function () {
         name: 'test'
       };
     });
-    it('should return a JSON schema string from a resource object', function () {
 
+    it('should return a JSON schema string from a resource object', function () {
       format(options, function (err, resource) {
         expect(JSON.parse(resource)).to.eql({
           metas: {
             self: {
               href: 'http://domain/test/'
+            }
+          },
+          test: [{
+            id: 2,
+            test: 1,
+            value: 'test',
+            href: 'http://domain/test/2'
+          }]
+        });
+      });
+    });
+
+    it('should return unencoded urls', function () {
+
+      options.url = 'http://domain/test/?test=1%2C2';
+
+      format(options, function (err, resource) {
+        expect(JSON.parse(resource)).to.eql({
+          metas: {
+            self: {
+              href: 'http://domain/test/?test=1,2'
             }
           },
           test: [{
