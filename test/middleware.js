@@ -158,7 +158,7 @@ describe('formatter middleware', function () {
     .expect(check)
     .end(done);
   });
-  it('should be able to expend related resources', function (done) {
+  it('should be able to expand related resources', function (done) {
     app.get('/resource', function (req, res, next) {
       res.body = {
         id: 1,
@@ -185,7 +185,7 @@ describe('formatter middleware', function () {
      expect(res.body).to.eql({
         metas: {
           self: {
-            href: 'http://test.fr/resource?expend=resource.authors'
+            href: 'http://test.fr/resource?expand=resource.authors'
           }
         },
         resource: [{
@@ -203,7 +203,7 @@ describe('formatter middleware', function () {
     }
 
     request(app)
-    .get('/resource?expend=resource.authors')
+    .get('/resource?expand=resource.authors')
     .expect(check)
     .end(done);
   });

@@ -148,12 +148,12 @@ describe('JSON Schema formatter', function () {
         });
       });
     });
-    it('should be able to expend related resources', function () {
+    it('should be able to expand related resources', function () {
       options.withRelated = [
         {
           name: 'authors',
           url: 'http://domain/authors/',
-          expend: true
+          expand: true
         }
       ];
       options.body = [{
