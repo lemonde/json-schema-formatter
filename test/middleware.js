@@ -127,7 +127,7 @@ describe('formatter middleware', function () {
       withRelated: [
         {
         name: 'authors',
-        url: 'http://test.fr/authors'
+        url: 'http://test.fr/authors/'
         }
       ]
     }));
@@ -139,15 +139,15 @@ describe('formatter middleware', function () {
             href: 'http://test.fr/resource'
           }
         },
+        links: {
+          'resource.authors': 'http://test.fr/authors/{resource.authors}'
+        },
         resource: [{
           href: 'http://test.fr/resource/1',
           id: 1,
           data: 'test',
           links: {
-            authors: [{
-              id: 1,
-              href: 'http://test.fr/authors/1'
-            }]
+            authors: [1]
           }
         }]
       });

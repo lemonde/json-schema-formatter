@@ -133,16 +133,16 @@ describe('JSON Schema formatter', function () {
               href: 'http://domain/test/'
             }
           },
+          links: {
+            'test.authors': 'http://domain/authors/{test.authors}'
+          },
           test: [{
             id: 2,
             test: 1,
             value: 'test',
             href: 'http://domain/test/2',
             links: {
-              authors: [{
-                id: 1,
-                href: 'http://domain/authors/1'
-              }]
+              authors: [1]
             }
           }]
         });
