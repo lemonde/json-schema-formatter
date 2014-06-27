@@ -33,5 +33,10 @@ describe('url utils', function () {
       expect(parseExpand('articles.authors,articles.medias'))
       .to.eql(['articles.authors', 'articles.medias']);
     });
+
+    it('should decode query value', function () {
+      expect(parseExpand('article.authors%2Cauthors.article'))
+      .to.eql(['article.authors', 'authors.article']);
+    });
   });
 });
