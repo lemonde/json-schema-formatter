@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 
 var getResourceURL = require('../lib/url-utils').getResourceURL;
+var parseExpand = require('../lib/url-utils').parseExpand;
 
 describe('url utils', function () {
   describe('#getResourceURL', function () {
@@ -24,6 +25,18 @@ describe('url utils', function () {
       .to.eql('http://test.fr/article-authors');
       expect(getResourceURL('http://test.fr/article-authors?name=test', 'articleAuthors'))
       .to.eql('http://test.fr/article-authors');
+    });
+  });
+
+  describe('#parseExpand', function () {
+    it('should split comma separated values', function () {
+      expect(parseExpand('articles.authors,articles.medias'))
+      .to.eql(['articles.authors', 'articles.medias']);
+    });
+
+    it('should decode query value', function () {
+      expect(parseExpand('article.authors%2Cauthors.article'))
+      .to.eql(['article.authors', 'authors.article']);
     });
   });
 });
