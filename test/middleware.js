@@ -188,6 +188,9 @@ describe('formatter middleware', function () {
             href: 'http://test.fr/resource?expand=resource.authors'
           }
         },
+        links: {
+          'resource.authors': 'http://test.fr/authors/{resource.authors}'
+        },
         resource: [{
           href: 'http://test.fr/resource/1',
           id: 1,
@@ -243,6 +246,10 @@ describe('formatter middleware', function () {
           self: {
             href: 'http://test.fr/resource?expand=resource.authors,resource.test'
           }
+        },
+        links: {
+          'resource.authors': 'http://test.fr/authors/{resource.authors}',
+          'resource.test': 'http://test.fr/test/{resource.test}'
         },
         resource: [{
           href: 'http://test.fr/resource/1',

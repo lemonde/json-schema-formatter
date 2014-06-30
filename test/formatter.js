@@ -192,6 +192,9 @@ describe('JSON Schema formatter', function () {
               href: 'http://domain/test/'
             }
           },
+          links: {
+            'test.authors': 'http://domain/authors/{test.authors}'
+          },
           test: [{
             id: 2,
             test: 1,
