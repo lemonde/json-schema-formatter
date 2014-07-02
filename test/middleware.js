@@ -140,7 +140,9 @@ describe('formatter middleware', function () {
           }
         },
         links: {
-          'resource.authors': 'http://test.fr/authors/{resource.authors}'
+          'resource.authors': {
+            href: 'http://test.fr/authors/{resource.authors}'
+          }
         },
         resource: [{
           href: 'http://test.fr/resource/1',
@@ -189,7 +191,9 @@ describe('formatter middleware', function () {
           }
         },
         links: {
-          'resource.authors': 'http://test.fr/authors/{resource.authors}'
+          'resource.authors': {
+            href: 'http://test.fr/authors/{resource.authors}'
+          }
         },
         resource: [{
           href: 'http://test.fr/resource/1',
@@ -248,8 +252,12 @@ describe('formatter middleware', function () {
           }
         },
         links: {
-          'resource.authors': 'http://test.fr/authors/{resource.authors}',
-          'resource.test': 'http://test.fr/test/{resource.test}'
+          'resource.authors': {
+            href: 'http://test.fr/authors/{resource.authors}'
+          },
+          'resource.test': {
+            href: 'http://test.fr/test/{resource.test}'
+          }
         },
         resource: [{
           href: 'http://test.fr/resource/1',
