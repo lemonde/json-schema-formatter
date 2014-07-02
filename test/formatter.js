@@ -155,7 +155,9 @@ describe('JSON Schema formatter', function () {
             }
           },
           links: {
-            'test.authors': 'http://domain/authors/{test.authors}'
+            'test.authors': {
+              href: 'http://domain/authors/{test.authors}'
+            }
           },
           test: [{
             id: 2,
@@ -193,7 +195,9 @@ describe('JSON Schema formatter', function () {
             }
           },
           links: {
-            'test.authors': 'http://domain/authors/{test.authors}'
+            'test.authors': {
+              href: 'http://domain/authors/{test.authors}'
+            }
           },
           test: [{
             id: 2,
