@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var parse = require('../lib/parser').parse;
+var parse = require('../lib/parser');
 
 describe('JSON Schema parser', function () {
   describe('#parse', function () {
