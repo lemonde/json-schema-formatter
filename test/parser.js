@@ -22,11 +22,13 @@ describe('JSON Schema parser', function () {
     });
 
     it('should turn a JSON Schema string into a Javascript Object', function () {
-      expect(parse(options)).to.eql([{
+      parse(options, function (err, resource) {
+        expect(resource).to.eql([{
           id: 2,
           test: 1,
           value: 'test'
-      }]);
+        }]);
+      });
     });
   });
 });
