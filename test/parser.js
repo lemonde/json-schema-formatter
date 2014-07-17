@@ -30,6 +30,18 @@ describe('JSON Schema parser', function () {
         }]);
       });
     });
+
+    it('should remove href fields from the JSON Schema string', function () {
+      data.resources[0].href = 'http://foo.bar';
+      options.body = JSON.stringify(data);
+      parse(options, function (err, resource) {
+        expect(resource).to.eql([{
+          id: 2,
+          test: 1,
+          value: 'test'
+        }]);
+      });
+    });
   });
 });
 
