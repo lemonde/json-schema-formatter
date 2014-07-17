@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-var format = require('../lib/formatter').format;
+var format = require('../lib/formatter');
 
 describe('JSON Schema formatter', function () {
   describe('#format', function () {
